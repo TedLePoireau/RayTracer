@@ -46,39 +46,39 @@ float operator * (const vecteur&v1, const vecteur &v2) {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
 
-struct material {
-	float red, green, blue, reflection;
-};
+//struct material {
+//	float red, green, blue, reflection;
+//};
 
 
-struct sphere {
-	point pos;
-	float size;
-	int material;
-};
-
-struct triangle {
-	point posA;
-	point posB;
-	point posC;
-	int material;
-};
-
-
-struct light {
-	point pos;
-	float red, green, blue;
-};
+//struct sphere {
+//	point pos;
+//	float size;
+//	int material;
+//};
+//
+//struct triangle {
+//	point posA;
+//	point posB;
+//	point posC;
+//	int material;
+//};
 
 
-struct ray {
-	point start;
-	vecteur dir;
-};
-
-struct scene {
-	vector<material> matTab;
-	vector<sphere>   sphTab;
-	vector<light>    lgtTab;
-	int sizex, sizey;
-};
+//struct light {
+//	point pos;
+//	float red, green, blue;
+//};
+//
+//
+//struct ray {
+//	point start;
+//	vecteur dir;
+//};
+//
+//struct scene {
+//	vector<material> matTab;
+//	vector<sphere>   sphTab;
+//	vector<light>    lgtTab;
+//	int sizex, sizey;
+//};

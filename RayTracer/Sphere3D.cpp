@@ -1,6 +1,7 @@
 #include "Sphere3D.h"
 
 
+
 Sphere3D::Sphere3D(float x, float y, float z, float rayon) :
 	Object3D(x, y, z), rayon(rayon) {}
 
@@ -9,7 +10,7 @@ Sphere3D::~Sphere3D(void)
 {
 }
 
-bool Sphere3D::isHit(const ray &r, float &t)
+bool Sphere3D::isHit(const Ray &r, float &t)
 {
 	// intersection rayon/sphere 
 	vecteur dist = getPos() - r.start;

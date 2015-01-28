@@ -8,7 +8,7 @@ class Triangle : Object3D
 public:
 	Triangle(point &A, point &B, point &C);
 	~Triangle();
-	virtual bool isHit(const ray &r, float &t);
+	virtual bool isHit(const Ray &r, float &t);
 	vecteur getU();
 	vecteur getV();
 };

@@ -12,7 +12,7 @@ Triangle::~Triangle()
 {
 }
 
-bool Triangle::isHit(const ray &r, float &t)
+bool Triangle::isHit(const Ray &r, float &t)
 {
 		float D = -1 * (u^v)*r.dir;
 
