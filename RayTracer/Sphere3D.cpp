@@ -33,3 +33,12 @@ bool Sphere3D::isHit(const Ray &r, float &t)
 	}
 	return retvalue;
 }
+
+vecteur Sphere3D::getNormale(const point &intersect)
+{
+	vecteur n = intersect - getPos();
+	float den = n*n;
+	den = 1.0f / sqrtf(den);
+	n = den * n;
+	return n;
+}

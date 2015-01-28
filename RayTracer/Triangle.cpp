@@ -30,3 +30,8 @@ bool Triangle::isHit(const Ray &r, float &t)
 		else
 			return false;
 }
+vecteur Triangle::getNormale()
+{
+	vecteur n = u^v;
+	return n;
+}

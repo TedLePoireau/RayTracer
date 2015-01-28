@@ -11,5 +11,6 @@ public:
 	virtual bool isHit(const Ray &r, float &t);
 	vecteur getU();
 	vecteur getV();
+	vecteur getNormale();
 };
 
