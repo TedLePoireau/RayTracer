@@ -1,0 +1,7 @@
+RayTracer/Debug/*
+Debug/
+*.opensdf
+*.tga
+*.bmp
+*.jpg
+*.png
