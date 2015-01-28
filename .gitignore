@@ -5,3 +5,8 @@ Debug/
 *.bmp
 *.jpg
 *.png
+*.user
+*.filters
+*.vcxproj
+*.suo
+*.sdf
