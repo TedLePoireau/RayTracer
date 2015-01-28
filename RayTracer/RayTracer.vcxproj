@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="main2.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="Ray.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="Scene3DParserUtils.h" />
     <ClInclude Include="Sphere3D.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

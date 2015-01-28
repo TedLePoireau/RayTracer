@@ -3,9 +3,10 @@
 
 class Sphere3D : Object3D
 {
-	unsigned int rayon;
+	float rayon;
 public:
-	Sphere3D(unsigned int x, unsigned int y, unsigned int z, unsigned int rayon);
+	Sphere3D(float x, float y, float z, float rayon);
 	~Sphere3D(void);
+	virtual bool isHit(const ray &r, float &t);
 };
 

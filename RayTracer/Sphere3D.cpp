@@ -1,10 +1,34 @@
 #include "Sphere3D.h"
 
 
-Sphere3D::Sphere3D(unsigned int x, unsigned int y, unsigned int z, unsigned int rayon) :
+Sphere3D::Sphere3D(float x, float y, float z, float rayon) :
 	Object3D(x, y, z), rayon(rayon) {}
 
 
 Sphere3D::~Sphere3D(void)
 {
+}
+
+bool Sphere3D::isHit(const ray &r, float &t)
+{
+	// intersection rayon/sphere 
+	vecteur dist = getPos() - r.start;
+	float B = r.dir * dist;
+	float D = B*B - dist * dist + rayon * rayon;
+	if (D < 0.0f)
+		return false;
+	float t0 = B - sqrtf(D);
+	float t1 = B + sqrtf(D);
+	bool retvalue = false;
+	if ((t0 > 0.1f) && (t0 < t))
+	{
+		t = t0;
+		retvalue = true;
+	}
+	if ((t1 > 0.1f) && (t1 < t))
+	{
+		t = t1;
+		retvalue = true;
+	}
+	return retvalue;
 }

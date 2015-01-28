@@ -5,13 +5,10 @@
 class Object3D
 {
 private:
-	unsigned int x;
-	unsigned int y;
-	unsigned int z;
+	point pos;
 public:
-	Object3D (unsigned int x, unsigned int y, unsigned int z);
+	Object3D (float x, float y, float z);
+	Object3D(point &p);
 	virtual bool isHit(const ray &r, float &t) = 0;
-	std::pair<int,int> getPos();
-
-
+	point getPos();
 };

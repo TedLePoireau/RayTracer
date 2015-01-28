@@ -4,18 +4,13 @@
 struct point {
 	float x, y, z;
 };
-istream & operator >> (istream &inputFile, point& p) {
-	return inputFile >> p.x >> p.y >> p.z;
-}
 
 struct vecteur {
 	float x, y, z;
 };
-istream & operator >> (ifstream &inputFile, vecteur& v) {
-	return inputFile >> v.x >> v.y >> v.z;
-}
 
-point operator + (const point&p, const vecteur &v){
+
+point operator + (const point &p, const vecteur &v){
 	point p2 = { p.x + v.x, p.y + v.y, p.z + v.z };
 	return p2;
 }
@@ -54,9 +49,7 @@ float operator * (const vecteur&v1, const vecteur &v2) {
 struct material {
 	float red, green, blue, reflection;
 };
-istream & operator >> (istream &inputFile, material& mat) {
-	return inputFile >> mat.red >> mat.green >> mat.blue >> mat.reflection;
-}
+
 
 struct sphere {
 	point pos;
@@ -70,17 +63,13 @@ struct triangle {
 	point posC;
 	int material;
 };
-istream & operator >> (istream &inputFile, sphere& sph) {
-	return inputFile >> sph.pos >> sph.size >> sph.material;
-}
+
 
 struct light {
 	point pos;
 	float red, green, blue;
 };
-istream & operator >> (istream &inputFile, light& lig) {
-	return inputFile >> lig.pos >> lig.red >> lig.green >> lig.blue;
-}
+
 
 struct ray {
 	point start;
