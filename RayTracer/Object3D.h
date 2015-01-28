@@ -1,5 +1,4 @@
 #pragma once
-#include <tuple>
 #include "utility.h"
 #include "Ray.h"
 

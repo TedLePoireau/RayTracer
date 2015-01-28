@@ -1,9 +1,15 @@
 #include "Scene3DParser.h"
 #include <fstream>
 #include <iostream>
+
 #include <cctype>
 #include <string>
 #include "Sphere3D.h"
+#include "Triangle.h"
+#include "boost\algorithm\string\split.hpp"
+#include "boost\algorithm\string\classification.hpp"
+#include <vector>
+
 
 Scene3DParser::Scene3DParser(std::string path) :
 	path(path) {}
@@ -37,6 +43,14 @@ Scene3D* Scene3DParser::parse()
 		else if (line == "sphere")
 		{
 			parseSphere(in, scene);
+		}
+		else if (line == "triangle")
+		{
+			parseTriangle(in, scene);
+		}
+		else if (line == "mesh")
+		{
+			parseMesh(in, scene);
 		}
 		else if (line == "plane")
 		{
@@ -126,25 +140,44 @@ void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
 			std::exit(-1);
 		}
 	}
-	if (pos_x < 0)
+	if ((pos_x < 0) || (pos_y < 0) || (rayon < 0))
 	{
-		std::cout << "[ERROR] Missing or negative pos_x in Sphere at line : " << line_nb << std::endl;
+		std::cout << "[ERROR] Missing parameter in Sphere at line : " << line_nb << std::endl;
 		std::exit(-1);
 	}
-	else if (pos_y < 0)
-	{
-		std::cout << "[ERROR] Missing or negative pos_y in Sphere at line : " << line_nb << std::endl;
-		std::exit(-1);
-	}
-	else if (rayon < 0)
-	{
-		std::cout << "[ERROR] Missing or negative rayon in Sphere at line : " << line_nb << std::endl;
-		std::exit(-1);
-	}
+	
 	Sphere3D* sphere = new Sphere3D(pos_x, pos_y, pos_z, rayon);
-	scene->addObject3D((Object3D*)sphere);
+	scene->addSphere(sphere);
 	return;
 }
+void Scene3DParser::parseMesh(std::ifstream& in, Scene3D* scene)
+{}
+void Scene3DParser::parseTriangle(std::ifstream& in, Scene3D* scene)
+{
+	std::string line;
+	float pos_x = -1, pos_y = -1, pos_z = -1, rayon = -1;
+	readline(in, line);
+	if (line != "{")
+	{
+		std::cout << "[ERROR] Missing \"{\" at line : " << line_nb << std::endl;
+		std::exit(-1);
+	}
+	point pts[3];
+	for (int i = 0; i < 3; i++)
+	{
+		readline(in, line);
+		std::vector<std::string> strs;
+		boost::split(strs, line, boost::is_any_of("\t "));
+		pts[i] = { std::stof(strs[0]), std::stof(strs[1]), std::stof(strs[2]) };
+	}
+		
+	
+	Triangle* triangle = new 	Triangle(pts[0], pts[1], pts[2]);
+
+	scene->addTriangle(triangle);
+	return;
+}
+
 
 bool Scene3DParser::readline(std::ifstream& in, std::string& line)
 {

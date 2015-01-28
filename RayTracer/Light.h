@@ -1,5 +1,6 @@
-#include "utility.h"
 #pragma once
+#include "utility.h"
+
 class Light
 {
 public:

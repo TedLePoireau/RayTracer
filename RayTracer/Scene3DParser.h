@@ -11,6 +11,9 @@ private:
 	Scene3D* parseScene(std::ifstream& in);
 	void parseSphere(std::ifstream& in, Scene3D* scene);
 	void parsePlane(std::ifstream& in, Scene3D* scene);
+	void parseTriangle(std::ifstream& in, Scene3D* scene);
+	void parseMesh(std::ifstream& in, Scene3D* scene);
+	
 	//void parseLight(std::ifstream& in, Scene3D* scene);
 
 	bool readline(std::ifstream& in, std::string& line);
