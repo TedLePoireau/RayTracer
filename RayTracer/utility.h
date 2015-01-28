@@ -41,6 +41,12 @@ vecteur operator - (const vecteur&v1, const vecteur &v2){
 	return v;
 }
 
+vecteur operator ^ (const vecteur&v1, const vecteur &v2){
+	vecteur v = { v1.y * v2.z - v2.y * v1.z, v1.z * v2.x - v2.z * v1.x, v1.x * v2.y - v2.x * v1.y };
+	return v;
+}
+
+
 float operator * (const vecteur&v1, const vecteur &v2) {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
@@ -55,6 +61,13 @@ istream & operator >> (istream &inputFile, material& mat) {
 struct sphere {
 	point pos;
 	float size;
+	int material;
+};
+
+struct triangle {
+	point posA;
+	point posB;
+	point posC;
 	int material;
 };
 istream & operator >> (istream &inputFile, sphere& sph) {
