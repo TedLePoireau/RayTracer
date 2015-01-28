@@ -64,13 +64,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="main.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="scene.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Object3D.cpp" />
+    <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="RayTracer.cpp" />
+    <ClCompile Include="Scene3D.cpp" />
+    <ClCompile Include="Scene3DParser.cpp" />
+    <ClCompile Include="Scene3DParserUtils.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sphere3D.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="Object3D.h" />
+    <ClInclude Include="Ray.h" />
+    <ClInclude Include="RayTracer.h" />
+    <ClInclude Include="Scene3D.h" />
+    <ClInclude Include="Scene3DParser.h" />
+    <ClInclude Include="Scene3DParserUtils.h" />
+    <ClInclude Include="Sphere3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

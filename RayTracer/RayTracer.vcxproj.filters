@@ -16,20 +16,83 @@
     <Filter Include="Resource Files\scenes">
       <UniqueIdentifier>{975488aa-5dfe-41b5-a114-d41dbe7a5c2f}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <Filter Include="Header Files\Scene3D">
+      <UniqueIdentifier>{b171ab96-080d-41c9-a9fe-f094ec885a71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scene3D\Objects3D">
+      <UniqueIdentifier>{41e53511-1c7d-4ac0-a666-0e4722b78fc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scene3D\Parser">
+      <UniqueIdentifier>{fd6671a6-9910-44b1-b0f7-a3af52960171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene3D">
+      <UniqueIdentifier>{b4b5baf5-22db-4bdb-86d5-e70a97da3605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene3D\Object3D">
+      <UniqueIdentifier>{daa5cc21-400f-4117-b7d8-77f00716232d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene3D\Parser">
+      <UniqueIdentifier>{37fb9e9e-e959-40c8-8726-2dcb27b24da6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="scene.txt">
       <Filter>Resource Files\scenes</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RayTracer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files\Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>Source Files\Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3D.cpp">
+      <Filter>Source Files\Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D.cpp">
+      <Filter>Source Files\Scene3D\Object3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere3D.cpp">
+      <Filter>Source Files\Scene3D\Object3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3DParser.cpp">
+      <Filter>Source Files\Scene3D\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3DParserUtils.cpp">
+      <Filter>Source Files\Scene3D\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RayTracer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D.h">
+      <Filter>Header Files\Scene3D\Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere3D.h">
+      <Filter>Header Files\Scene3D\Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header Files\Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Header Files\Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3D.h">
+      <Filter>Header Files\Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3DParser.h">
+      <Filter>Header Files\Scene3D\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3DParserUtils.h">
+      <Filter>Header Files\Scene3D\Parser</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
