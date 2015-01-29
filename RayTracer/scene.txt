@@ -84,7 +84,7 @@ light
 #	rayon		100
 #}
 
-#triangle
+triangle
 {
 233 290 0
 407 290 0

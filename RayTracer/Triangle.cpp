@@ -66,8 +66,10 @@ bool Triangle::isHit(const Ray &r, float &t)
 
 	testval = v * Q * inv_det;
 	if (testval > EPSILON && testval < t)
+	{
+		t = testval;
 		return true;
-
+	}
 	return false;
 
 }
