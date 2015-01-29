@@ -2,8 +2,12 @@
 class Material
 {
 public:
-	Material();
+	int red;
+	int green;
+	int blue;
+
+	float reflection;
+	Material(int red, int green, int blue, float reflection);
 	~Material();
-	float red, green, blue, reflection;
 };
 

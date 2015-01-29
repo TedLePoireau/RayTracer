@@ -3,26 +3,66 @@
 # Basic Test #
 ############## 
 
+
 scene
 {
-	size_x		300
-	size_y		300
+	size_x		640
+	size_y		480
 	distance	10
 }
 
-
-sphere
+material
 {
-	pos_x	150
-	pos_y	150
-	pos_z	150
-	rayon	10
+	red		0
+	green	1
+	blue	0
+	reflection	10.0
+}
+
+light
+{
+	pos_x	0
+	pos_y	240
+	pos_z	-100
+	red		1
+	green	1
+	blue	1
+}
+
+light
+{
+	pos_x	640.0 
+	pos_y	240.0
+	pos_z	-10000.0
+	red		0.6
+	green	0.7
+	blue	1
 }
 
 sphere
 {
-	pos_x	250
-	pos_y	250
-	pos_z	250
+	pos_x	233
+	pos_y	290
+	pos_z	100
+	rayon	1
+}
+
+sphere
+{
+	pos_x	407
+	pos_y	290
+	pos_z	0
 	rayon	10
+}
+
+triangle
+{
+3 4 5
+7 4 2
+6 3 9
+}
+
+mesh
+{
+	file	C:\Users\Nicolas\sphere.obj
 }

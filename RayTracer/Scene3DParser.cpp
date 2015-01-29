@@ -32,29 +32,13 @@ Scene3D* Scene3DParser::parse()
 		if (line.at(0) == '#')
 			continue;
 
-		if (line == "scene")
-		{
-			scene = parseScene(in);
-		}
-		else if (line == "light")
-		{
-			//parseLight(in, scene);
-		}
-		else if (line == "sphere")
-		{
-			parseSphere(in, scene);
-		}
-		else if (line == "triangle")
-		{
-			parseTriangle(in, scene);
-		}
-		else if (line == "mesh")
-		{
-			parseMesh(in, scene);
-		}
-		else if (line == "plane")
-		{
-		}
+		if (line == "scene") { scene = parseScene(in); }
+		else if (line == "light")		{ parseLight(in, scene); }
+		else if (line == "sphere") 		{ parseSphere(in, scene); }
+		else if (line == "triangle")	{ parseTriangle(in, scene); }
+		else if (line == "mesh")		{ parseMesh(in, scene); }
+		else if (line == "material")	{ parseMaterial(in, scene); }
+		else if (line == "plane")		{ }
 	}
 	return scene;
 }
@@ -77,41 +61,30 @@ Scene3D* Scene3DParser::parseScene(std::ifstream& in)
 		if (line == "}")
 			break;
 		command = *get_command(line);
-		if (command == "size_x")
-		{	size_x = std::stoi(*get_parameter(line)); }
-		else if (command == "size_y")
-		{	size_y = std::stoi(*get_parameter(line)); }
-		else if (command == "distance")
-		{	distance = std::stoi(*get_parameter(line));	}
+		if (command == "size_x") {	size_x = std::stoi(*get_parameter(line)); }
+		else if (command == "size_y") {	size_y = std::stoi(*get_parameter(line)); }
+		else if (command == "distance") { distance = std::stoi(*get_parameter(line));	}
 		else
 		{
 			std::cerr << "[ERROR] Unrecognized parameter at line : " << line_nb << std::endl;
 			std::exit(-1);
 		}
 	}
-	if (size_x < 0)
+	if ((size_x < 0) || (size_y < 0) || (distance < 0))
 	{
-		std::cout << "[ERROR] Missing pos_x in Scene at line : " << line_nb << std::endl;
+		std::cout << "[ERROR] Missing parameter in Scene at line : " << line_nb << std::endl;
 		std::exit(-1);
 	}
-	else if (size_y < 0)
-	{
-		std::cout << "[ERROR] Missing pos_y in Scene at line : " << line_nb << std::endl;
-		std::exit(-1);
-	}
-	else if (distance < 0)
-	{
-		std::cout << "[ERROR] Missing distance in Scene at line : " << line_nb << std::endl;
-		std::exit(-1);
-	}
+
 	Scene3D* scene = new Scene3D(size_x, size_y);
 	return scene;
 }
 
-void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
+void Scene3DParser::parseMaterial(std::ifstream& in, Scene3D* scene)
 {
 	std::string line;
-	int pos_x = -1, pos_y = -1, pos_z = -1, rayon = -1;
+	float red = -1, green = -1, blue = -1;
+	float reflection = -1;
 	readline(in, line);
 	if (line != "{")
 	{
@@ -124,16 +97,92 @@ void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
 		if (line == "}")
 			break;
 		command = *get_command(line);
-		if (command == "pos_x")
-		{	pos_x = std::stoi(*get_parameter(line)); }
-		else if (command == "pos_y")
-		{	pos_y = std::stoi(*get_parameter(line)); }
-		else if (command == "pos_z")
+		if (command == "red") { red = std::stof(*get_parameter(line)); }
+		else if (command == "green") { green = std::stof(*get_parameter(line)); }
+		else if (command == "blue") { blue = std::stof(*get_parameter(line)); }
+		else if (command == "reflection") { reflection = std::stof(*get_parameter(line)); }
+		else
 		{
-			pos_z = std::stoi(*get_parameter(line));
+			std::cout << "[ERROR] Unrecognized parameter at line : " << line_nb << std::endl;
+			std::exit(-1);
 		}
-		else if (command == "rayon")
-		{	rayon = std::stoi(*get_parameter(line)); }
+	}
+	if ((red < 0) || (green < 0) || (blue < 0) || (reflection < 0))
+	{
+		std::cout << "[ERROR] Missing parameter in Sphere at line : " << line_nb << std::endl;
+		std::exit(-1);
+	}
+
+	Material *mat = new Material(red, green, blue, reflection);
+	scene->addMaterial(mat);
+	return;
+}
+
+void Scene3DParser::parseLight(std::ifstream& in, Scene3D* scene)
+{
+	std::string line;
+	float red = -1, green = -1, blue = -1;
+	float pos_x, pos_y, pos_z;
+
+	readline(in, line);
+	if (line != "{")
+	{
+		std::cout << "[ERROR] Missing \"{\" at line : " << line_nb << std::endl;
+		std::exit(-1);
+	}
+	std::string command;
+	while (readline(in, line))
+	{
+		if (line == "}")
+			break;
+		command = *get_command(line);
+		if (command == "red") { red = std::stof(*get_parameter(line)); }
+		else if (command == "green") { green = std::stof(*get_parameter(line)); }
+		else if (command == "blue") { blue = std::stof(*get_parameter(line)); }
+		else if (command == "pos_x") { pos_x = std::stof(*get_parameter(line)); }
+		else if (command == "pos_y") { pos_y = std::stof(*get_parameter(line)); }
+		else if (command == "pos_z") { pos_z = std::stof(*get_parameter(line)); }
+		else
+		{
+			std::cout << "[ERROR] Unrecognized parameter at line : " << line_nb << std::endl;
+			std::exit(-1);
+		}
+	}
+	if ((red < 0) || (green < 0) || (blue < 0))
+	{
+		std::cout << "[ERROR] Missing parameter in Sphere at line : " << line_nb << std::endl;
+		std::exit(-1);
+	}
+
+	Light *l = new Light();
+	l->blue = blue;
+	l->green = green;
+	l->red = red;
+	l->pos = { pos_x, pos_y, pos_z };
+	scene->lights->push_front(l);
+	return;
+}
+
+void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
+{
+	std::string line;
+	float pos_x = -1, pos_y = -1, pos_z = -1, rayon = -1;
+	readline(in, line);
+	if (line != "{")
+	{
+		std::cout << "[ERROR] Missing \"{\" at line : " << line_nb << std::endl;
+		std::exit(-1);
+	}
+	std::string command;
+	while (readline(in, line))
+	{
+		if (line == "}")
+			break;
+		command = *get_command(line);
+		if (command == "pos_x") { pos_x = std::stof(*get_parameter(line)); } 
+		else if (command == "pos_y") { pos_y = std::stof(*get_parameter(line)); }
+		else if (command == "pos_z") { pos_z = std::stof(*get_parameter(line)); }
+		else if (command == "rayon") { rayon = std::stof(*get_parameter(line)); }
 		else
 		{
 			std::cout << "[ERROR] Unrecognized parameter at line : " << line_nb << std::endl;
@@ -151,7 +200,27 @@ void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
 	return;
 }
 void Scene3DParser::parseMesh(std::ifstream& in, Scene3D* scene)
-{}
+{
+	std::string line;
+	Mesh *mesh;
+	readline(in, line);
+	if (line != "{")
+	{
+		std::cout << "[ERROR] Missing \"{\" at line : " << line_nb << std::endl;
+		std::exit(-1);
+	}
+	readline(in, line);
+	std::string command = *get_command(line);
+	if (command == "file")
+	{
+		mesh = new Mesh(*get_parameter(line));
+		scene->addMesh(mesh);
+		return;
+	}
+
+	return;
+
+}
 void Scene3DParser::parseTriangle(std::ifstream& in, Scene3D* scene)
 {
 	std::string line;
@@ -171,7 +240,6 @@ void Scene3DParser::parseTriangle(std::ifstream& in, Scene3D* scene)
 		pts[i] = { std::stof(strs[0]), std::stof(strs[1]), std::stof(strs[2]) };
 	}
 		
-	
 	Triangle* triangle = new 	Triangle(pts[0], pts[1], pts[2]);
 
 	scene->addTriangle(triangle);
@@ -225,7 +293,7 @@ std::string* Scene3DParser::get_parameter(std::string& s)
 	auto begin= s.begin();
 	auto it = s.end();
 	it--;
-	while (it != begin && *it != ':' && *it != ' ' && *it != '\t')
+	while (it != begin && *it != ' ' && *it != '\t')
 		it--;
 	if (it == begin)
 	{

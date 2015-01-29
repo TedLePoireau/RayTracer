@@ -6,7 +6,6 @@ int main(int argc, char* argv[])
 {
 	RayTracer raytracer(argv[1]);
 	Scene3D *scene = raytracer.scene;
-	scene->print();
-	std::getchar();
+	raytracer.draw("C:\\Users\\Nicolas\\good.tga");
 	std::exit(0);
 }

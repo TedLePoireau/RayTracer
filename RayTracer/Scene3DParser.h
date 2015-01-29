@@ -13,8 +13,8 @@ private:
 	void parsePlane(std::ifstream& in, Scene3D* scene);
 	void parseTriangle(std::ifstream& in, Scene3D* scene);
 	void parseMesh(std::ifstream& in, Scene3D* scene);
-	
-	//void parseLight(std::ifstream& in, Scene3D* scene);
+	void parseMaterial(std::ifstream& in, Scene3D* scene);
+	void parseLight(std::ifstream& in, Scene3D* scene);
 
 	bool readline(std::ifstream& in, std::string& line);
 	void trim_string(std::string& s);
@@ -23,6 +23,7 @@ private:
 public:
 	Scene3DParser(std::string path);
 	Scene3D* parse(void);
+
 	~Scene3DParser(void);
 };
 
