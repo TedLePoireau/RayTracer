@@ -85,17 +85,17 @@ light
 #}
 
 #triangle
-#{
-#233 290 0
-#407 290 0
-#320 140 0
-#}
-
-mesh
 {
-	pos_x		50
-	pos_y		50
-	pos_z		0
-	material 	2
-	file		C:\Users\Nicolas\sphere2.obj
+233 290 0
+407 290 0
+320 140 0
 }
+
+#mesh
+#{
+#	pos_x		50
+#	pos_y		50
+#	pos_z		0
+#	material 	2
+#	file		.\sphere.obj
+#}

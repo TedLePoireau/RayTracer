@@ -21,5 +21,6 @@ vecteur operator * (float c, const vecteur &v);
 
 vecteur operator - (const vecteur&v1, const vecteur &v2);
 vecteur operator ^ (const vecteur&v1, const vecteur &v2);
+bool operator == (const vecteur&v1, const vecteur &v2);
 
 float operator * (const vecteur&v1, const vecteur &v2);
