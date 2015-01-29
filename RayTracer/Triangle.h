@@ -5,6 +5,7 @@ class Triangle : Object3D
 {
 	vecteur u;
 	vecteur v;
+	vecteur n;
 public:
 	Triangle(point &A, point &B, point &C);
 	~Triangle();

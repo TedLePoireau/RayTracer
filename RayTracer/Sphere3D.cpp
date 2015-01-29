@@ -2,8 +2,8 @@
 
 
 
-Sphere3D::Sphere3D(float x, float y, float z, float rayon) :
-	Object3D(x, y, z), rayon(rayon) {}
+Sphere3D::Sphere3D(float x, float y, float z, float rayon, int material) :
+	Object3D(x, y, z), rayon(rayon), material(material) {}
 
 
 Sphere3D::~Sphere3D(void)

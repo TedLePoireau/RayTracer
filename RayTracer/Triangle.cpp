@@ -5,6 +5,7 @@ Triangle::Triangle(point &A, point &B, point &C) :
 Object3D(A) {
 	u = B - A;
 	v = C - A;
+	n = u^v;
 }
 
 
@@ -32,6 +33,5 @@ bool Triangle::isHit(const Ray &r, float &t)
 }
 vecteur Triangle::getNormale()
 {
-	vecteur n = u^v;
 	return n;
 }

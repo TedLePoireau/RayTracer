@@ -1,7 +1,7 @@
 #include "Material.h"
 
 
-Material::Material(int red, int green, int blue, float reflection) :
+Material::Material(float red, float green, float blue, float reflection) :
 red(red), green(green), blue(blue), reflection(reflection)
 {
 }

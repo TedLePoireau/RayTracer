@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <vector>
 #include "Object3D.h"
 #include "Light.h"
 #include "Sphere3D.h"
@@ -17,7 +18,7 @@ public:
 	std::list<Triangle*> *triangles;
 	std::list<Mesh*> * meshs;
 	std::list<Light*> *lights;
-	std::list<Material*> *materials;
+	std::vector<Material*> *materials;
 	Scene3D(unsigned int size_x, unsigned int size_y);
 	void addLight(Light* light);
 	void addSphere(Sphere3D* object);

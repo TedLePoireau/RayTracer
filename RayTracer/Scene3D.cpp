@@ -8,7 +8,7 @@ Scene3D::Scene3D(unsigned int size_x, unsigned int size_y) :
 	triangles = new std::list<Triangle*>();
 	meshs = new std::list<Mesh*>();
 	lights = new std::list<Light*>();
-	materials = new std::list<Material*>();
+	materials = new std::vector<Material*>();
 }
 
 void Scene3D::addLight(Light* light)
@@ -33,7 +33,7 @@ void Scene3D::addMesh(Mesh* object)
 
 void Scene3D::addMaterial(Material* object)
 {
-	materials->push_front(object);
+	materials->insert(materials->end() ,object);
 }
 
 void Scene3D::print()

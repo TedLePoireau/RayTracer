@@ -167,6 +167,7 @@ void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
 {
 	std::string line;
 	float pos_x = -1, pos_y = -1, pos_z = -1, rayon = -1;
+	int material = 0;
 	readline(in, line);
 	if (line != "{")
 	{
@@ -183,6 +184,7 @@ void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
 		else if (command == "pos_y") { pos_y = std::stof(*get_parameter(line)); }
 		else if (command == "pos_z") { pos_z = std::stof(*get_parameter(line)); }
 		else if (command == "rayon") { rayon = std::stof(*get_parameter(line)); }
+		else if (command == "material") { material = std::stof(*get_parameter(line)); }
 		else
 		{
 			std::cout << "[ERROR] Unrecognized parameter at line : " << line_nb << std::endl;
@@ -195,28 +197,41 @@ void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
 		std::exit(-1);
 	}
 	
-	Sphere3D* sphere = new Sphere3D(pos_x, pos_y, pos_z, rayon);
+	Sphere3D* sphere = new Sphere3D(pos_x, pos_y, pos_z, rayon, material);
 	scene->addSphere(sphere);
 	return;
 }
 void Scene3DParser::parseMesh(std::ifstream& in, Scene3D* scene)
 {
+	float pos_x = -1, pos_y = -1, pos_z = -1;
+	int material = 0;
 	std::string line;
-	Mesh *mesh;
+	std::string command;
+	Mesh *mesh = NULL;
 	readline(in, line);
 	if (line != "{")
 	{
 		std::cout << "[ERROR] Missing \"{\" at line : " << line_nb << std::endl;
 		std::exit(-1);
 	}
-	readline(in, line);
-	std::string command = *get_command(line);
-	if (command == "file")
+	while (readline(in, line))
 	{
-		mesh = new Mesh(*get_parameter(line));
-		scene->addMesh(mesh);
-		return;
+		if (line == "}")
+			break;
+		command = *get_command(line);
+		if (command == "pos_x") { pos_x = std::stof(*get_parameter(line)); }
+		else if (command == "pos_y") { pos_y = std::stof(*get_parameter(line)); }
+		else if (command == "pos_z") { pos_z = std::stof(*get_parameter(line)); }
+		else if (command == "material") { material = std::stof(*get_parameter(line)); }
+		else if (command == "file") { mesh = new Mesh(pos_x, pos_y, pos_z, material, *get_parameter(line)); }
+		else
+		{
+			std::cout << "[ERROR] Unrecognized parameter at line : " << line_nb << std::endl;
+			std::exit(-1);
+		}
 	}
+	scene->addMesh(mesh);
+	
 
 	return;
 

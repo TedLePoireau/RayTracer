@@ -6,17 +6,35 @@
 
 scene
 {
-	size_x		640
-	size_y		480
+	size_x		800
+	size_y		600
 	distance	10
+}
+
+1.0 0.0 1.0 0.5
+
+material
+{
+	red		1.0
+	green	1.0
+	blue	0
+	reflection	0.5
 }
 
 material
 {
-	red		0
-	green	1
-	blue	0
-	reflection	10.0
+	red		0.0
+	green	1.0
+	blue	1.0
+	reflection	0.5
+}
+
+material
+{
+	red		1.0
+	green	0.0
+	blue	1.0
+	reflection	0.5
 }
 
 light
@@ -39,30 +57,45 @@ light
 	blue	1
 }
 
-sphere
-{
-	pos_x	233
-	pos_y	290
-	pos_z	100
-	rayon	1
-}
-
-sphere
-{
-	pos_x	407
-	pos_y	290
-	pos_z	0
-	rayon	10
-}
+#sphere
+#{
+#	material	0
+#	pos_x		233
+#	pos_y		290
+#	pos_z		0
+#	rayon		100
+#}
+#
+#sphere
+#{
+#	material	1
+#	pos_x		407
+#	pos_y		290
+#	pos_z		0
+#	rayon		100
+#}
+#
+#sphere
+#{
+#	material	2
+#	pos_x		320
+#	pos_y		140
+#	pos_z		0
+#	rayon		100
+#}
 
 triangle
 {
-3 4 5
-7 4 2
-6 3 9
+233 290 100
+407 290 400
+320 140 0
 }
 
-mesh
-{
-	file	C:\Users\Nicolas\sphere.obj
-}
+#mesh
+#{
+#	pos_x		50
+#	pos_y		50
+#	pos_z		0
+#	material 	2
+#	file		C:\Users\Nicolas\sphere2.obj
+#}

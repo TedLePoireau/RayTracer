@@ -38,8 +38,11 @@ bool RayTracer::draw(char* outputName)
 			int level = 0;
 			// lancer de rayon 
 			Ray viewRay;
-			viewRay.start= { 0.0f, 0.0f, 1.0f };
-			viewRay.dir = { float(x), float(y), -10000.0f };
+			/*viewRay.start= { 0.0f, 0.0f, 1.0f };
+			viewRay.dir = { float(x), float(y), -10000.0f };*/
+
+			viewRay.start = { float(x), float(y), -10000.0f };
+			viewRay.dir = { 0.0f, 0.0f, 1.0f };
 			do
 			{
 				// recherche de l'intersection la plus proche
@@ -81,16 +84,18 @@ bool RayTracer::draw(char* outputName)
 
 				point newStart = viewRay.start + t * viewRay.dir;
 				vecteur n;
+				Material* currentMat;
 				if (currentSphere_t < currentTriangle_t)
 				{
 					n = currentSphere->getNormale(newStart);
+					currentMat = scene->materials->at(currentSphere->material);
 				}
 				else
 				{
 					n = currentTriangle->getNormale();
+					currentMat = scene->materials->at(0);
 				}
 
-				Material* currentMat = scene->materials->front();
 
 				// calcul de la valeur d'éclairement au point 
 				for (Light *light : *scene->lights) {
@@ -109,6 +114,26 @@ bool RayTracer::draw(char* outputName)
 						if (s->isHit(lightRay, t)) {
 							inShadow = true;
 							break;
+						}
+					}
+					for (Triangle *tri : *scene->triangles)
+					{
+						if (tri->isHit(viewRay, t))
+						{
+							currentTriangle_t = t;
+							currentTriangle = tri;
+						}
+					}
+
+					for (Mesh *m : *scene->meshs)
+					{
+						for (Triangle *tri : m->triangles)
+						{
+							if (tri->isHit(viewRay, t))
+							{
+								currentTriangle_t = t;
+								currentTriangle = tri;
+							}
 						}
 					}
 					if (!inShadow) {
