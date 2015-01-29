@@ -84,18 +84,18 @@ light
 #	rayon		100
 #}
 
-triangle
-{
-233 290 100
-407 290 400
-320 140 0
-}
-
-#mesh
+#triangle
 #{
-#	pos_x		50
-#	pos_y		50
-#	pos_z		0
-#	material 	2
-#	file		C:\Users\Nicolas\sphere2.obj
+#233 290 0
+#407 290 0
+#320 140 0
 #}
+
+mesh
+{
+	pos_x		50
+	pos_y		50
+	pos_z		0
+	material 	2
+	file		C:\Users\Nicolas\sphere2.obj
+}

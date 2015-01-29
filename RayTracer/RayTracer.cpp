@@ -114,28 +114,31 @@ bool RayTracer::draw(char* outputName)
 						if (s->isHit(lightRay, t)) {
 							inShadow = true;
 							break;
-						}
+						} 
+					
 					}
+					
 					for (Triangle *tri : *scene->triangles)
 					{
-						if (tri->isHit(viewRay, t))
+						if (tri->isHit(lightRay, t))
 						{
-							currentTriangle_t = t;
-							currentTriangle = tri;
+							inShadow = true;
+							break;
 						}
 					}
-
+					
 					for (Mesh *m : *scene->meshs)
 					{
 						for (Triangle *tri : m->triangles)
 						{
-							if (tri->isHit(viewRay, t))
+							if (tri->isHit(lightRay, t))
 							{
-								currentTriangle_t = t;
-								currentTriangle = tri;
+								inShadow = true;
+								break;
 							}
 						}
 					}
+					
 					if (!inShadow) {
 						// lambert
 						float lambert = (lightRay.dir * n) * coef;

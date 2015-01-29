@@ -23,7 +23,7 @@ bool Triangle::isHit(const Ray &r, float &t)
 
 		float evalT = (u^v)*w / D;
 
-		if (a > 0 && b > 0 && (a + b) <= 1 && evalT < t)
+		if (a >=0 && b >= 0 && (a + b) <= 1 && evalT < t)
 		{
 			t = (u^v)*w / D;
 			return true;
