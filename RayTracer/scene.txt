@@ -11,7 +11,6 @@ scene
 	distance	10
 }
 
-1.0 0.0 1.0 0.5
 
 material
 {
@@ -44,8 +43,22 @@ material
 	blue	1.0
 	reflection	0.5
 }
-
-
+#5
+material
+{
+	red		1.0
+	green	1.0
+	blue	1.0
+	reflection	0.5
+}
+#6
+material
+{
+	red		0.0
+	green	1.0
+	blue	0.0
+	reflection	0.5
+}
 
 light
 {
@@ -103,28 +116,41 @@ light
 
 mesh
 {
-	pos_x		400
-	pos_y		300
+	pos_x		100
+	pos_y		100
 	pos_z		0
 	material 	2
-	scale		6
-	file		.\dude8x_300r.obj
+	scale		32
+	file		.\cube.obj
 }
 
-#mesh
-#{
-#	pos_x		300
-#	pos_y		300
-#	pos_z		0
-#	material 	2
-#	file		.\cube.obj
-#}
-#
-#mesh
-#{
-#	pos_x		450
-#	pos_y		450
-#	pos_z		0
-#	material 	2
-#	file		.\cone.obj
-#}
+mesh
+{
+	pos_x		200
+	pos_y		200
+	pos_z		0
+	material 	1
+	scale		32
+	file		.\cone.obj
+}
+
+mesh
+{
+	pos_x		300
+	pos_y		300
+	pos_z		0
+	material 	3
+	scale		32
+	file		.\cylindre.obj
+}
+
+mesh
+{
+	pos_x		400
+	pos_y		400
+	pos_z		30
+	material 	4
+	scale		32
+	file		.\torus.obj
+}
+

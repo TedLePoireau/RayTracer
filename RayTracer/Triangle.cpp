@@ -6,6 +6,7 @@ Object3D(A) {
 	u = B - A;
 	v = C - A;
 	n = u^v;
+	material = 1;
 }
 
 Triangle::Triangle(point &A, point &B, point &C, vecteur normal) :
@@ -13,6 +14,8 @@ Object3D(A) {
 	u = B - A;
 	v = C - A;
 	n = normal;
+
+	material = 1;
 }
 
 

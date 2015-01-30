@@ -46,6 +46,7 @@ Mesh::Mesh(float pos_x, float pos_y, float pos_z, int material, float scale, std
 					points[p2 - 1],
 					points[p3 - 1],
 					normals[n1-1]);
+				t->material = material;
 				triangles.push_back(t);
 			}
 			else
