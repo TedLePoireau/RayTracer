@@ -67,9 +67,17 @@ void RayTracer::trace(int x, int y)
 		Ray viewRay;
 		/*viewRay.start= { 0.0f, 0.0f, 1.0f };
 		viewRay.dir = { float(x), float(y), -10000.0f };*/
+		point supersampling = { 0.0f, 0.0f, 0.0f };
 
-		viewRay.start = { float(x), float(y), -10000.0f };
-		viewRay.dir = { 0.0f, 0.0f, 1.0f };
+
+		for (float yf = float(y); yf < (float)y + 1; yf += 0.5f)
+		{
+			for (float xf = float(x); xf < (float)x + 1; xf += 0.5f)
+			{
+
+			viewRay.start = { float(xf), float(yf), -10000.0f };
+	
+			viewRay.dir = { 0.0f, 0.0f, 1.0f };
 		do
 		{
 			// recherche de l'intersection la plus proche
@@ -183,10 +191,13 @@ void RayTracer::trace(int x, int y)
 
 			level++;
 		} while ((coef > 0.0f) && (level < 10));
-
-		image[x][y] = { (unsigned char)std::min(red*255.0f, 255.0f),
-						(unsigned char)std::min(green*255.0f, 255.0f),
-						(unsigned char)std::min(blue*255.0f, 255.0f) };
+		vecteur tmp = { 1.0f - expf(blue - 1.0f), 1.0f - expf(green - 1.0f), 1.0f - expf(red * -1.0f) };
+		supersampling = supersampling + (0.25f *tmp);
+	}
+	}
+	image[x][y] = {		(unsigned char)std::min(supersampling.x*255.0f, 255.0f),
+						(unsigned char)std::min(supersampling.y*255.0f, 255.0f),
+						(unsigned char)std::min(supersampling.z*255.0f, 255.0f) };
 		return ;
 }
 
