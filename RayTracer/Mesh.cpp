@@ -7,9 +7,21 @@
 #include <vector>
 
 
+float Mesh::dist(point p1, point p2)
+{
+	float acc = 0;
+	acc += (p1.x - p2.x) * (p1.x - p2.x);
+	acc += (p1.y - p2.y) * (p1.y - p2.y);
+	acc += (p1.z - p2.z) * (p1.z - p2.z);
+	return std::sqrt(acc);
+}
+
 Mesh::Mesh(float pos_x, float pos_y, float pos_z, int material, float scale, std::string path_to_obj)
 	: pos_x(pos_x), pos_y(pos_y), pos_z(pos_z), material(material), scale(scale)
 {
+	point orig = { pos_x, pos_y, pos_z };
+	float maxdist = 0;
+	float curdist = 0;
 	std::ifstream in(path_to_obj);
 	std::string line;
 	bool has_normals = false;
@@ -25,17 +37,20 @@ Mesh::Mesh(float pos_x, float pos_y, float pos_z, int material, float scale, std
 						std::stof(strs[3])};
 			normals.push_back(p);
 		}
-		if (line[0] == 'v')
+		else if (line[0] == 'v')
 		{
 			std::vector<std::string> strs;
 			boost::split(strs, line, boost::is_any_of("\t "));
 			point p = { std::stof(strs[1]) * scale + pos_x, 
 						std::stof(strs[2]) * scale  + pos_y,
 						std::stof(strs[3]) * scale  + pos_z};
+			curdist = dist(orig, p);
+			if (curdist > maxdist)
+				maxdist = curdist;
 			points.push_back(p);
 		}
 		
-		if (line[0] == 'f')
+		else if (line[0] == 'f')
 		{
 			if (has_normals)
 			{
@@ -61,6 +76,7 @@ Mesh::Mesh(float pos_x, float pos_y, float pos_z, int material, float scale, std
 			}
 		}
 	}
+	bound = new Sphere3D(orig.x, orig.y, orig.z, maxdist, 1);
 
 }
 
