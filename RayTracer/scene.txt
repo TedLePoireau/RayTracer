@@ -16,6 +16,14 @@ scene
 material
 {
 	red		1.0
+	green	0.0
+	blue	0.0
+	reflection	0.5
+}
+
+material
+{
+	red		1.0
 	green	1.0
 	blue	0
 	reflection	0.5
@@ -36,6 +44,8 @@ material
 	blue	1.0
 	reflection	0.5
 }
+
+
 
 light
 {
@@ -66,14 +76,14 @@ light
 #	rayon		100
 #}
 #
-#sphere
-#{
-#	material	1
-#	pos_x		407
-#	pos_y		290
-#	pos_z		0
-#	rayon		100
-#}
+sphere
+{
+	material	1
+	pos_x		407
+	pos_y		290
+	pos_z		0
+	rayon		100
+}
 #
 #sphere
 #{
@@ -86,16 +96,16 @@ light
 
 triangle
 {
-233 290 0
-407 290 0
-320 140 0
+233 290 -100
+407 290 400
+320 140 -300
 }
 
-#mesh
-#{
-#	pos_x		50
-#	pos_y		50
-#	pos_z		0
-#	material 	2
-#	file		.\sphere.obj
-#}
+mesh
+{
+	pos_x		50
+	pos_y		50
+	pos_z		0
+	material 	2
+	file		.\sphere4xN.obj
+}

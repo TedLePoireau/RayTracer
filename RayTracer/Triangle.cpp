@@ -8,6 +8,13 @@ Object3D(A) {
 	n = u^v;
 }
 
+Triangle::Triangle(point &A, point &B, point &C, vecteur normal) :
+Object3D(A) {
+	u = B - A;
+	v = C - A;
+	n = normal;
+}
+
 
 Triangle::~Triangle()
 {
@@ -35,7 +42,7 @@ bool Triangle::isHit(const Ray &r, float &t)
 
 	
 	vecteur P, Q, T;
-	float EPSILON = 0.000001f;
+	float EPSILON = 0.1f;
 	float testval;
 	float det, inv_det, param_u, param_v;
 

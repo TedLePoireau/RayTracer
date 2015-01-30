@@ -6,6 +6,7 @@ class Mesh
 {
 public:
 	std::vector<point> points;
+	std::vector<vecteur> normals;
 	std::list<Triangle*> triangles;
 	float pos_x;
 	float pos_y;
