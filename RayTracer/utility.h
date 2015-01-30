@@ -10,6 +10,7 @@ struct vecteur {
 	float x, y, z;
 };
 
+vecteur Normalize(vecteur& v1);
 
 point operator + (const point &p, const vecteur &v);
 

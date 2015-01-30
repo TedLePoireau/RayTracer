@@ -37,6 +37,15 @@ bool operator == (const vecteur&v1, const vecteur &v2){
 		return false;
 }
 
+vecteur Normalize(vecteur& v1)
+{
+	float norm = sqrtf(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
+	v1.x = v1.x / norm;
+	v1.y = v1.y / norm;
+	v1.z = v1.z / norm;
+	return v1;
+}
+
 
 float operator * (const vecteur&v1, const vecteur &v2) {
 	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
