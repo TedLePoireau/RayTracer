@@ -142,6 +142,7 @@ void Scene3DParser::parseLight(std::ifstream& in, Scene3D* scene)
 		else if (command == "pos_x") { pos_x = std::stof(*get_parameter(line)); }
 		else if (command == "pos_y") { pos_y = std::stof(*get_parameter(line)); }
 		else if (command == "pos_z") { pos_z = std::stof(*get_parameter(line)); }
+		
 		else
 		{
 			std::cout << "[ERROR] Unrecognized parameter at line : " << line_nb << std::endl;
@@ -203,7 +204,7 @@ void Scene3DParser::parseSphere(std::ifstream& in, Scene3D* scene)
 }
 void Scene3DParser::parseMesh(std::ifstream& in, Scene3D* scene)
 {
-	float pos_x = -1, pos_y = -1, pos_z = -1;
+	float pos_x = -1, pos_y = -1, pos_z = -1, scale = 1;
 	int material = 0;
 	std::string line;
 	std::string command;
@@ -223,7 +224,8 @@ void Scene3DParser::parseMesh(std::ifstream& in, Scene3D* scene)
 		else if (command == "pos_y") { pos_y = std::stof(*get_parameter(line)); }
 		else if (command == "pos_z") { pos_z = std::stof(*get_parameter(line)); }
 		else if (command == "material") { material = std::stof(*get_parameter(line)); }
-		else if (command == "file") { mesh = new Mesh(pos_x, pos_y, pos_z, material, *get_parameter(line)); }
+		else if (command == "scale") { scale = std::stof(*get_parameter(line)); }
+		else if (command == "file") { mesh = new Mesh(pos_x, pos_y, pos_z, material, scale, *get_parameter(line)); }
 		else
 		{
 			std::cout << "[ERROR] Unrecognized parameter at line : " << line_nb << std::endl;

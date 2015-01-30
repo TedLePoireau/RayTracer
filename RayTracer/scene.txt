@@ -76,14 +76,14 @@ light
 #	rayon		100
 #}
 #
-sphere
-{
-	material	1
-	pos_x		407
-	pos_y		290
-	pos_z		0
-	rayon		100
-}
+#sphere
+#{
+#	material	1
+#	pos_x		407
+#	pos_y		290
+#	pos_z		0
+#	rayon		100
+#}
 #
 #sphere
 #{
@@ -94,18 +94,37 @@ sphere
 #	rayon		100
 #}
 
-triangle
-{
-233 290 -100
-407 290 400
-320 140 -300
-}
+#triangle
+#{
+#233 290 -100
+#407 290 400
+#320 140 -300
+#}
 
 mesh
 {
-	pos_x		50
-	pos_y		50
+	pos_x		400
+	pos_y		300
 	pos_z		0
 	material 	2
-	file		.\sphere4xN.obj
+	scale		6
+	file		.\dude8x_300r.obj
 }
+
+#mesh
+#{
+#	pos_x		300
+#	pos_y		300
+#	pos_z		0
+#	material 	2
+#	file		.\cube.obj
+#}
+#
+#mesh
+#{
+#	pos_x		450
+#	pos_y		450
+#	pos_z		0
+#	material 	2
+#	file		.\cone.obj
+#}

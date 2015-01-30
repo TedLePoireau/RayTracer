@@ -11,8 +11,9 @@ public:
 	float pos_x;
 	float pos_y;
 	float pos_z;
+	float scale;
 	int material;
-	Mesh(float pos_x, float pos_y, float pos_z, int material, std::string path_to_obj);
+	Mesh(float pos_x, float pos_y, float pos_z, int material, float scale, std::string path_to_obj);
 	~Mesh();
 };
 
